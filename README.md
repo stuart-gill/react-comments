@@ -1,4 +1,8 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Please Note
+
+Requires a PostgreSQL server. Download the server application here:
+[https://github.com/stuart-gill/postgresql-comments-api.git](https://github.com/stuart-gill/postgresql-comments-api.git)
+And set up a PostgreSQL database on your local machine per the provided README
 
 ## Available Scripts
 
@@ -17,10 +21,6 @@ The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
 ## Basic Funcitonality:
-
-Requires a PostgreSQL server, download the server application here:
-[https://github.com/stuart-gill/postgresql-comments-api.git](https://github.com/stuart-gill/postgresql-comments-api.git)
-And set up a PostgreSQL database on your local machine per the provided README
 
 When the React application loads, it calls a fetch api to get all the comments (author/comment/id/timestamp objects) from the database and displays them in the very basic UI. If the user adds a new comment and their name, their new comment will appear at the bottom of the list. It appears there not because the Get API was called again, but because the comment's data was used to update the local state. This data was also sent to update the database.
 
