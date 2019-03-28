@@ -11,6 +11,8 @@ class App extends Component {
       comments: []
     };
     this.addComment = this.addComment.bind(this);
+    this.removeComment = this.removeComment.bind(this);
+    this.editComment = this.editComment.bind(this);
   }
 
   componentDidMount() {
@@ -20,6 +22,27 @@ class App extends Component {
         this.setState({ comments: data });
       });
     });
+  }
+
+  removeComment(event, id) {
+    event.preventDefault();
+    // let comments = this.state.comments;
+    // let comment = comments.find((comment) => {
+    //   return comment.id === id;
+    // });
+    var request = new Request(`http://localhost:3000/api/remove/${id}`, {
+      method: "DELETE"
+    });
+
+    fetch(request).then((response) => {
+      response.json().then((data) => {
+        console.log(data);
+      });
+    });
+  }
+
+  editComment(event) {
+    event.preventDefault();
   }
 
   addComment(event) {
@@ -78,6 +101,13 @@ class App extends Component {
                 comment.timestamp.substring(8, 10) +
                 "-" +
                 comment.timestamp.substring(0, 4)}
+              <button
+                onClick={(event) => this.removeComment(event, comment.id)}>
+                Remove
+              </button>
+              <button onClick={(event) => this.editComment(event, comment.id)}>
+                Edit
+              </button>
             </li>
           ))}
         </ul>
