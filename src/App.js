@@ -26,10 +26,10 @@ class App extends Component {
 
   removeComment(event, id) {
     event.preventDefault();
-    // let comments = this.state.comments;
-    // let comment = comments.find((comment) => {
-    //   return comment.id === id;
-    // });
+    let revisedComments = this.state.comments.filter(
+      (comment) => comment.id !== id
+    );
+    this.setState({ comments: revisedComments });
     var request = new Request(`http://localhost:3000/api/remove/${id}`, {
       method: "DELETE"
     });
