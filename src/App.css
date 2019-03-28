@@ -1,3 +1,11 @@
+ul {
+  list-style-type: none;
+}
+
+ul li:nth-child(even) {
+  background: #ecf7f9;
+}
+
 .App {
   text-align: center;
 }
