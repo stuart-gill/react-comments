@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import uuid from "uuid/v4";
+import Edit from "./Edit";
 
 import "./App.css";
 
@@ -8,7 +9,8 @@ class App extends Component {
     super();
     this.state = {
       title: "Simple Comments Application",
-      comments: []
+      comments: [],
+      showModal: false
     };
     this.addComment = this.addComment.bind(this);
     this.removeComment = this.removeComment.bind(this);
@@ -93,7 +95,7 @@ class App extends Component {
         </form>
 
         <ul>
-          {comments.map((comment) => (
+          {comments.reverse().map((comment) => (
             <li key={comment.id}>
               {comment.first_name} says: "{comment.comment}" at{" "}
               {comment.timestamp.substring(11, 19)} GMT on{" "}
@@ -108,6 +110,13 @@ class App extends Component {
               <button onClick={(event) => this.editComment(event, comment.id)}>
                 Edit
               </button>
+              {this.state.showModal && (
+                <Edit
+                  onClick={this.editComment}
+                  first_name={comment.first_name}
+                  comment={comment.comment}
+                />
+              )}
             </li>
           ))}
         </ul>
